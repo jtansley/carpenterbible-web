@@ -261,16 +261,24 @@ img {
     justify-content: center;
     padding: 120px 0 60px;
     overflow: hidden;
-    background: linear-gradient(175deg, #e8ece2 0%, #dfe6d4 25%, var(--sage-50) 50%, var(--cream) 75%, var(--cream-dark) 100%);
+    background: linear-gradient(180deg,
+        #6d7f5e 0%,
+        #7f9170 15%,
+        #92a585 35%,
+        #a8b89c 50%,
+        #c2ceb8 65%,
+        #dce4d4 80%,
+        var(--cream) 100%
+    );
 }
 
 .hero-bg-pattern {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(ellipse at 15% 30%, rgba(200, 215, 180, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(168, 198, 134, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(92, 64, 51, 0.04) 0%, transparent 40%);
+        radial-gradient(ellipse at 20% 20%, rgba(120, 145, 100, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 15%, rgba(100, 130, 80, 0.25) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 70%, rgba(92, 64, 51, 0.06) 0%, transparent 40%);
     pointer-events: none;
 }
 
@@ -301,7 +309,7 @@ img {
 /* --- FAR LAYER: huge, very blurred, slow — atmosphere depth --- */
 .cloud-layer-far .cloud {
     filter: blur(50px);
-    opacity: 0.35;
+    opacity: 0.6;
 }
 
 .cloud-far-1 {
@@ -339,7 +347,7 @@ img {
 /* --- MID LAYER: medium blur, medium speed — the main clouds --- */
 .cloud-layer-mid .cloud {
     filter: blur(30px);
-    opacity: 0.4;
+    opacity: 0.7;
 }
 
 .cloud-mid-1 {
@@ -399,7 +407,7 @@ img {
 /* --- NEAR LAYER: lighter blur, faster — passing close by --- */
 .cloud-layer-near .cloud {
     filter: blur(18px);
-    opacity: 0.3;
+    opacity: 0.55;
 }
 
 .cloud-near-1 {
@@ -445,7 +453,7 @@ img {
 /* --- WISPS: thin streaky clouds for realism --- */
 .cloud-layer-wisps .cloud {
     filter: blur(12px);
-    opacity: 0.2;
+    opacity: 0.4;
 }
 
 .cloud-wisp-1 {
@@ -623,27 +631,36 @@ img {
 
 .hero-badge {
     display: inline-block;
-    background: var(--sage-100);
-    color: var(--sage-800);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
     padding: 6px 16px;
     border-radius: var(--radius-xl);
     font-size: 0.85rem;
     font-weight: 600;
     margin-bottom: 24px;
     letter-spacing: 0.02em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .hero-content h1 {
     margin-bottom: 24px;
-    color: var(--brown-800);
+    color: white;
+    text-shadow: 0 2px 20px rgba(60, 50, 30, 0.2);
+}
+
+.hero-content h1 em {
+    color: var(--cream-dark);
 }
 
 .hero-subtitle {
     font-size: 1.15rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.9);
     max-width: 500px;
     margin-bottom: 36px;
     line-height: 1.7;
+    text-shadow: 0 1px 8px rgba(60, 50, 30, 0.15);
 }
 
 .hero-actions {
@@ -651,6 +668,28 @@ img {
     gap: 16px;
     flex-wrap: wrap;
     margin-bottom: 48px;
+}
+
+.hero-actions .btn-primary {
+    background: white;
+    color: var(--brown-800);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-actions .btn-primary:hover {
+    background: var(--cream);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.2);
+}
+
+.hero-actions .btn-secondary {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-actions .btn-secondary:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .hero-stats {
@@ -668,19 +707,19 @@ img {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--brown-700);
+    color: white;
 }
 
 .stat-label {
     font-size: 0.85rem;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
 }
 
 .stat-divider {
     width: 1px;
     height: 40px;
-    background: var(--brown-200);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Hero Phone Mockup */
@@ -862,7 +901,7 @@ img {
     position: absolute;
     width: 350px;
     height: 350px;
-    background: radial-gradient(circle, rgba(168, 198, 134, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -880,7 +919,7 @@ img {
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.8rem;
     animation: bounce 2s ease-in-out infinite;
     z-index: 3;
