@@ -273,11 +273,145 @@ img {
     pointer-events: none;
 }
 
+/* Animated Clouds */
+.clouds-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cloud {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.45);
+    will-change: transform;
+    filter: blur(1px);
+}
+
+.cloud svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Cloud 1 — large, slow, top area */
+.cloud-1 {
+    width: 320px;
+    top: 5%;
+    left: -320px;
+    color: rgba(255, 255, 255, 0.35);
+    animation: drift-1 55s linear infinite;
+}
+
+/* Cloud 2 — medium, mid-speed, lower */
+.cloud-2 {
+    width: 240px;
+    top: 25%;
+    left: -240px;
+    color: rgba(255, 255, 255, 0.3);
+    animation: drift-2 40s linear infinite;
+    animation-delay: -15s;
+}
+
+/* Cloud 3 — largest, slowest, background feel */
+.cloud-3 {
+    width: 400px;
+    top: 12%;
+    left: -400px;
+    color: rgba(255, 255, 255, 0.2);
+    filter: blur(2px);
+    animation: drift-3 70s linear infinite;
+    animation-delay: -30s;
+}
+
+/* Cloud 4 — small, quick, lower third */
+.cloud-4 {
+    width: 180px;
+    top: 55%;
+    left: -180px;
+    color: rgba(255, 255, 255, 0.35);
+    animation: drift-4 35s linear infinite;
+    animation-delay: -8s;
+}
+
+/* Cloud 5 — medium-large, top third */
+.cloud-5 {
+    width: 280px;
+    top: 38%;
+    left: -280px;
+    color: rgba(255, 255, 255, 0.25);
+    filter: blur(1.5px);
+    animation: drift-5 50s linear infinite;
+    animation-delay: -22s;
+}
+
+/* Cloud 6 — small accent cloud, high */
+.cloud-6 {
+    width: 160px;
+    top: 68%;
+    left: -160px;
+    color: rgba(255, 255, 255, 0.3);
+    animation: drift-6 45s linear infinite;
+    animation-delay: -5s;
+}
+
+/* Each cloud drifts from left to right across the full viewport */
+@keyframes drift-1 {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 640px)); }
+}
+
+@keyframes drift-2 {
+    0%   { transform: translateX(0) translateY(0); }
+    50%  { transform: translateX(calc(50vw + 120px)) translateY(-15px); }
+    100% { transform: translateX(calc(100vw + 480px)) translateY(0); }
+}
+
+@keyframes drift-3 {
+    0%   { transform: translateX(0) translateY(0); }
+    50%  { transform: translateX(calc(50vw + 200px)) translateY(10px); }
+    100% { transform: translateX(calc(100vw + 800px)) translateY(0); }
+}
+
+@keyframes drift-4 {
+    0%   { transform: translateX(0) translateY(0); }
+    50%  { transform: translateX(calc(50vw + 90px)) translateY(-10px); }
+    100% { transform: translateX(calc(100vw + 360px)) translateY(0); }
+}
+
+@keyframes drift-5 {
+    0%   { transform: translateX(0) translateY(0); }
+    50%  { transform: translateX(calc(50vw + 140px)) translateY(12px); }
+    100% { transform: translateX(calc(100vw + 560px)) translateY(0); }
+}
+
+@keyframes drift-6 {
+    0%   { transform: translateX(0) translateY(0); }
+    50%  { transform: translateX(calc(50vw + 80px)) translateY(-8px); }
+    100% { transform: translateX(calc(100vw + 320px)) translateY(0); }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .cloud {
+        animation: none !important;
+        opacity: 0.15;
+    }
+    .cloud-1 { left: 10%; }
+    .cloud-2 { left: 50%; }
+    .cloud-3 { left: 25%; }
+    .cloud-4 { left: 65%; }
+    .cloud-5 { left: 40%; }
+    .cloud-6 { left: 75%; }
+}
+
 .hero-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-badge {
@@ -542,6 +676,7 @@ img {
     color: var(--text-light);
     font-size: 0.8rem;
     animation: bounce 2s ease-in-out infinite;
+    z-index: 3;
 }
 
 @keyframes bounce {
