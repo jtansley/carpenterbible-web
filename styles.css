@@ -283,9 +283,8 @@ img {
 }
 
 /* ===========================================
-   Heavenly Light Rays
-   Realistic crepuscular rays streaming down
-   from the sky with gentle shimmer animation
+   Heavenly Light Rays — Jaw-Dropping Edition
+   Sweeping beams, bloom glows, floating dust motes
    =========================================== */
 
 .light-rays {
@@ -296,146 +295,445 @@ img {
     z-index: 0;
 }
 
+/* --- BASE RAY STYLE --- */
 .ray {
     position: absolute;
-    top: -20%;
-    height: 140%;
+    top: -30%;
+    height: 160%;
+    transform-origin: 50% 0%;
+    will-change: transform, opacity;
+}
+
+/* --- INDIVIDUAL RAYS with sweep + bloom + fade animations --- */
+
+/* Ray 1 — Hero beam, center-left, wide & bright */
+.ray-1 {
+    left: 12%;
+    width: 200px;
     background: linear-gradient(
         180deg,
-        rgba(255, 255, 240, 0.45) 0%,
-        rgba(255, 255, 230, 0.25) 20%,
-        rgba(255, 248, 220, 0.12) 50%,
-        rgba(255, 245, 210, 0.04) 75%,
+        rgba(255, 255, 230, 0.0) 0%,
+        rgba(255, 255, 220, 0.6) 8%,
+        rgba(255, 250, 205, 0.4) 25%,
+        rgba(255, 248, 200, 0.15) 55%,
+        rgba(255, 245, 195, 0.03) 80%,
+        transparent 100%
+    );
+    filter: blur(6px);
+    animation: sweep-1 18s ease-in-out infinite, bloom-1 8s ease-in-out infinite;
+}
+
+/* Ray 2 — Right side, medium width */
+.ray-2 {
+    left: 58%;
+    width: 140px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 235, 0.0) 0%,
+        rgba(255, 255, 225, 0.5) 10%,
+        rgba(255, 252, 215, 0.3) 30%,
+        rgba(255, 248, 200, 0.1) 60%,
         transparent 100%
     );
     filter: blur(8px);
-    transform-origin: top center;
-    will-change: opacity;
+    animation: sweep-2 22s ease-in-out infinite, bloom-2 10s ease-in-out infinite;
+    animation-delay: -4s, -2s;
 }
 
-/* --- Individual rays: varying widths, positions, angles, opacities --- */
-
-/* Primary ray — wide, bright, center-left */
-.ray-1 {
-    left: 15%;
-    width: 180px;
-    transform: rotate(8deg);
-    opacity: 0.7;
-    animation: ray-shimmer-1 8s ease-in-out infinite;
-}
-
-/* Secondary ray — narrower, right side */
-.ray-2 {
-    left: 55%;
-    width: 120px;
-    transform: rotate(-5deg);
-    opacity: 0.5;
-    animation: ray-shimmer-2 10s ease-in-out infinite;
-    animation-delay: -3s;
-}
-
-/* Accent ray — thin, far left */
+/* Ray 3 — Far left accent, thin & sharp */
 .ray-3 {
-    left: 3%;
-    width: 70px;
-    transform: rotate(14deg);
-    opacity: 0.35;
-    animation: ray-shimmer-3 12s ease-in-out infinite;
-    animation-delay: -7s;
+    left: -2%;
+    width: 80px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 240, 0.0) 0%,
+        rgba(255, 255, 230, 0.55) 6%,
+        rgba(255, 250, 210, 0.3) 25%,
+        rgba(255, 245, 190, 0.08) 55%,
+        transparent 100%
+    );
+    filter: blur(4px);
+    animation: sweep-3 25s ease-in-out infinite, bloom-3 12s ease-in-out infinite;
+    animation-delay: -8s, -6s;
 }
 
-/* Wide diffuse ray — center */
+/* Ray 4 — Wide atmospheric wash, center */
 .ray-4 {
-    left: 32%;
-    width: 220px;
-    transform: rotate(3deg);
-    opacity: 0.3;
-    filter: blur(18px);
-    animation: ray-shimmer-4 14s ease-in-out infinite;
-    animation-delay: -2s;
+    left: 28%;
+    width: 280px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 230, 0.0) 0%,
+        rgba(255, 252, 220, 0.35) 10%,
+        rgba(255, 248, 205, 0.18) 35%,
+        rgba(255, 245, 195, 0.05) 65%,
+        transparent 100%
+    );
+    filter: blur(22px);
+    animation: sweep-4 28s ease-in-out infinite, bloom-4 14s ease-in-out infinite;
+    animation-delay: -3s, -7s;
 }
 
-/* Narrow bright ray — right-center */
+/* Ray 5 — Bright narrow beam, right-center */
 .ray-5 {
     left: 72%;
-    width: 90px;
-    transform: rotate(-10deg);
-    opacity: 0.55;
-    animation: ray-shimmer-5 9s ease-in-out infinite;
-    animation-delay: -5s;
-}
-
-/* Very wide atmospheric glow — far right */
-.ray-6 {
-    left: 82%;
-    width: 250px;
-    transform: rotate(-15deg);
-    opacity: 0.2;
-    filter: blur(25px);
-    animation: ray-shimmer-6 16s ease-in-out infinite;
-    animation-delay: -9s;
-}
-
-/* Subtle thin ray — between primary rays */
-.ray-7 {
-    left: 44%;
-    width: 55px;
-    transform: rotate(6deg);
-    opacity: 0.4;
+    width: 100px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 235, 0.0) 0%,
+        rgba(255, 255, 225, 0.6) 7%,
+        rgba(255, 250, 210, 0.35) 22%,
+        rgba(255, 245, 195, 0.1) 50%,
+        transparent 100%
+    );
     filter: blur(5px);
-    animation: ray-shimmer-7 11s ease-in-out infinite;
-    animation-delay: -4s;
+    animation: sweep-5 20s ease-in-out infinite, bloom-5 9s ease-in-out infinite;
+    animation-delay: -12s, -4s;
 }
 
-/* --- Shimmer Keyframes: gentle opacity pulsing at different rates --- */
-
-@keyframes ray-shimmer-1 {
-    0%, 100% { opacity: 0.7; }
-    40%      { opacity: 0.45; }
-    70%      { opacity: 0.75; }
+/* Ray 6 — Far right, wide & soft */
+.ray-6 {
+    left: 85%;
+    width: 220px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 230, 0.0) 0%,
+        rgba(255, 252, 220, 0.3) 12%,
+        rgba(255, 248, 205, 0.15) 35%,
+        rgba(255, 245, 195, 0.04) 60%,
+        transparent 100%
+    );
+    filter: blur(28px);
+    animation: sweep-6 32s ease-in-out infinite, bloom-6 16s ease-in-out infinite;
+    animation-delay: -15s, -9s;
 }
 
-@keyframes ray-shimmer-2 {
-    0%, 100% { opacity: 0.5; }
-    35%      { opacity: 0.65; }
-    65%      { opacity: 0.35; }
+/* Ray 7 — Thin beam, left-center gap filler */
+.ray-7 {
+    left: 42%;
+    width: 65px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 240, 0.0) 0%,
+        rgba(255, 255, 230, 0.5) 8%,
+        rgba(255, 250, 215, 0.25) 28%,
+        rgba(255, 245, 200, 0.06) 55%,
+        transparent 100%
+    );
+    filter: blur(4px);
+    animation: sweep-7 15s ease-in-out infinite, bloom-7 11s ease-in-out infinite;
+    animation-delay: -6s, -3s;
 }
 
-@keyframes ray-shimmer-3 {
+/* --- SWEEP KEYFRAMES: rays slowly sway left/right from their origin point --- */
+
+@keyframes sweep-1 {
+    0%, 100% { transform: rotate(6deg)  scaleX(1); }
+    30%      { transform: rotate(12deg) scaleX(1.15); }
+    60%      { transform: rotate(2deg)  scaleX(0.9); }
+    80%      { transform: rotate(9deg)  scaleX(1.05); }
+}
+
+@keyframes sweep-2 {
+    0%, 100% { transform: rotate(-4deg)  scaleX(1); }
+    25%      { transform: rotate(-10deg) scaleX(0.85); }
+    55%      { transform: rotate(2deg)   scaleX(1.2); }
+    75%      { transform: rotate(-7deg)  scaleX(1); }
+}
+
+@keyframes sweep-3 {
+    0%, 100% { transform: rotate(16deg) scaleX(1); }
+    35%      { transform: rotate(8deg)  scaleX(1.3); }
+    65%      { transform: rotate(20deg) scaleX(0.8); }
+    85%      { transform: rotate(12deg) scaleX(1.1); }
+}
+
+@keyframes sweep-4 {
+    0%, 100% { transform: rotate(2deg)  scaleX(1); }
+    40%      { transform: rotate(-3deg) scaleX(1.1); }
+    70%      { transform: rotate(5deg)  scaleX(0.95); }
+}
+
+@keyframes sweep-5 {
+    0%, 100% { transform: rotate(-8deg)  scaleX(1); }
+    20%      { transform: rotate(-3deg)  scaleX(1.2); }
+    50%      { transform: rotate(-14deg) scaleX(0.85); }
+    80%      { transform: rotate(-6deg)  scaleX(1.1); }
+}
+
+@keyframes sweep-6 {
+    0%, 100% { transform: rotate(-12deg) scaleX(1); }
+    30%      { transform: rotate(-18deg) scaleX(1.15); }
+    60%      { transform: rotate(-8deg)  scaleX(0.9); }
+}
+
+@keyframes sweep-7 {
+    0%, 100% { transform: rotate(5deg)  scaleX(1); }
+    25%      { transform: rotate(10deg) scaleX(1.25); }
+    55%      { transform: rotate(0deg)  scaleX(0.85); }
+    80%      { transform: rotate(8deg)  scaleX(1.1); }
+}
+
+/* --- BLOOM KEYFRAMES: dramatic opacity breathing --- */
+
+@keyframes bloom-1 {
+    0%, 100% { opacity: 0.75; }
+    30%      { opacity: 0.4; }
+    60%      { opacity: 0.85; }
+    80%      { opacity: 0.55; }
+}
+
+@keyframes bloom-2 {
+    0%, 100% { opacity: 0.55; }
+    40%      { opacity: 0.25; }
+    70%      { opacity: 0.7; }
+}
+
+@keyframes bloom-3 {
+    0%, 100% { opacity: 0.4; }
+    25%      { opacity: 0.65; }
+    50%      { opacity: 0.15; }
+    75%      { opacity: 0.5; }
+}
+
+@keyframes bloom-4 {
     0%, 100% { opacity: 0.35; }
-    50%      { opacity: 0.2; }
+    35%      { opacity: 0.12; }
+    65%      { opacity: 0.45; }
+    85%      { opacity: 0.2; }
+}
+
+@keyframes bloom-5 {
+    0%, 100% { opacity: 0.6; }
+    30%      { opacity: 0.3; }
+    55%      { opacity: 0.75; }
     80%      { opacity: 0.45; }
 }
 
-@keyframes ray-shimmer-4 {
-    0%, 100% { opacity: 0.3; }
-    30%      { opacity: 0.15; }
-    60%      { opacity: 0.38; }
+@keyframes bloom-6 {
+    0%, 100% { opacity: 0.25; }
+    50%      { opacity: 0.1; }
+    80%      { opacity: 0.35; }
 }
 
-@keyframes ray-shimmer-5 {
-    0%, 100% { opacity: 0.55; }
-    45%      { opacity: 0.35; }
-    75%      { opacity: 0.6; }
+@keyframes bloom-7 {
+    0%, 100% { opacity: 0.45; }
+    20%      { opacity: 0.7; }
+    50%      { opacity: 0.2; }
+    75%      { opacity: 0.55; }
 }
 
-@keyframes ray-shimmer-6 {
-    0%, 100% { opacity: 0.2; }
-    50%      { opacity: 0.12; }
-    85%      { opacity: 0.28; }
+/* --- GROUND BLOOM: warm glow pools where rays hit --- */
+
+.ray-bloom {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
 }
 
-@keyframes ray-shimmer-7 {
-    0%, 100% { opacity: 0.4; }
-    40%      { opacity: 0.25; }
-    70%      { opacity: 0.5; }
+.bloom-1 {
+    bottom: 8%;
+    left: 10%;
+    width: 450px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(255, 248, 200, 0.25) 0%, rgba(255, 245, 190, 0.08) 40%, transparent 70%);
+    filter: blur(40px);
+    animation: ground-bloom-1 18s ease-in-out infinite;
+}
+
+.bloom-2 {
+    bottom: 5%;
+    left: 45%;
+    width: 350px;
+    height: 160px;
+    background: radial-gradient(ellipse, rgba(255, 250, 210, 0.2) 0%, rgba(255, 245, 195, 0.06) 45%, transparent 70%);
+    filter: blur(35px);
+    animation: ground-bloom-2 22s ease-in-out infinite;
+    animation-delay: -8s;
+}
+
+.bloom-3 {
+    bottom: 10%;
+    left: 70%;
+    width: 380px;
+    height: 180px;
+    background: radial-gradient(ellipse, rgba(255, 252, 220, 0.18) 0%, rgba(255, 248, 200, 0.05) 40%, transparent 70%);
+    filter: blur(45px);
+    animation: ground-bloom-3 26s ease-in-out infinite;
+    animation-delay: -14s;
+}
+
+@keyframes ground-bloom-1 {
+    0%, 100% { opacity: 0.7; transform: scale(1) translateX(0); }
+    30%      { opacity: 0.35; transform: scale(1.15) translateX(30px); }
+    60%      { opacity: 0.8; transform: scale(0.9) translateX(-20px); }
+}
+
+@keyframes ground-bloom-2 {
+    0%, 100% { opacity: 0.5; transform: scale(1) translateX(0); }
+    40%      { opacity: 0.2; transform: scale(1.2) translateX(-25px); }
+    75%      { opacity: 0.6; transform: scale(0.95) translateX(15px); }
+}
+
+@keyframes ground-bloom-3 {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    35%      { opacity: 0.65; transform: scale(1.1); }
+    65%      { opacity: 0.2; transform: scale(0.85); }
+}
+
+/* --- FLOATING DUST MOTES: tiny particles drifting in the light --- */
+
+.dust-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.dust {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 230, 0.9);
+    will-change: transform, opacity;
+}
+
+.dust-1 {
+    width: 4px; height: 4px;
+    top: 20%; left: 15%;
+    animation: float-1 12s ease-in-out infinite, twinkle 4s ease-in-out infinite;
+}
+.dust-2 {
+    width: 3px; height: 3px;
+    top: 35%; left: 45%;
+    animation: float-2 16s ease-in-out infinite, twinkle 5s ease-in-out infinite;
+    animation-delay: -3s, -1s;
+}
+.dust-3 {
+    width: 5px; height: 5px;
+    top: 15%; left: 60%;
+    animation: float-3 14s ease-in-out infinite, twinkle 3.5s ease-in-out infinite;
+    animation-delay: -7s, -2s;
+}
+.dust-4 {
+    width: 3px; height: 3px;
+    top: 50%; left: 25%;
+    animation: float-4 18s ease-in-out infinite, twinkle 6s ease-in-out infinite;
+    animation-delay: -5s, -3s;
+}
+.dust-5 {
+    width: 4px; height: 4px;
+    top: 40%; left: 75%;
+    animation: float-5 13s ease-in-out infinite, twinkle 4.5s ease-in-out infinite;
+    animation-delay: -9s, -1.5s;
+}
+.dust-6 {
+    width: 2px; height: 2px;
+    top: 25%; left: 35%;
+    animation: float-6 20s ease-in-out infinite, twinkle 5.5s ease-in-out infinite;
+    animation-delay: -11s, -2.5s;
+}
+.dust-7 {
+    width: 5px; height: 5px;
+    top: 60%; left: 55%;
+    animation: float-1 15s ease-in-out infinite, twinkle 3s ease-in-out infinite;
+    animation-delay: -4s, -1s;
+}
+.dust-8 {
+    width: 3px; height: 3px;
+    top: 10%; left: 80%;
+    animation: float-3 17s ease-in-out infinite, twinkle 6.5s ease-in-out infinite;
+    animation-delay: -13s, -4s;
+}
+.dust-9 {
+    width: 4px; height: 4px;
+    top: 45%; left: 10%;
+    animation: float-5 11s ease-in-out infinite, twinkle 4s ease-in-out infinite;
+    animation-delay: -2s, -2s;
+}
+.dust-10 {
+    width: 2px; height: 2px;
+    top: 55%; left: 68%;
+    animation: float-2 19s ease-in-out infinite, twinkle 5s ease-in-out infinite;
+    animation-delay: -8s, -3s;
+}
+.dust-11 {
+    width: 3px; height: 3px;
+    top: 30%; left: 90%;
+    animation: float-4 14s ease-in-out infinite, twinkle 3.5s ease-in-out infinite;
+    animation-delay: -6s, -1s;
+}
+.dust-12 {
+    width: 4px; height: 4px;
+    top: 65%; left: 40%;
+    animation: float-6 16s ease-in-out infinite, twinkle 4.5s ease-in-out infinite;
+    animation-delay: -10s, -2s;
+}
+
+/* Dust float paths — gentle wandering arcs */
+@keyframes float-1 {
+    0%, 100% { transform: translate(0, 0); }
+    25%      { transform: translate(40px, -60px); }
+    50%      { transform: translate(-20px, -120px); }
+    75%      { transform: translate(30px, -70px); }
+}
+
+@keyframes float-2 {
+    0%, 100% { transform: translate(0, 0); }
+    30%      { transform: translate(-50px, -45px); }
+    60%      { transform: translate(25px, -100px); }
+    80%      { transform: translate(-15px, -55px); }
+}
+
+@keyframes float-3 {
+    0%, 100% { transform: translate(0, 0); }
+    20%      { transform: translate(30px, -80px); }
+    50%      { transform: translate(-40px, -40px); }
+    75%      { transform: translate(20px, -110px); }
+}
+
+@keyframes float-4 {
+    0%, 100% { transform: translate(0, 0); }
+    35%      { transform: translate(-35px, -70px); }
+    65%      { transform: translate(45px, -30px); }
+    85%      { transform: translate(-10px, -90px); }
+}
+
+@keyframes float-5 {
+    0%, 100% { transform: translate(0, 0); }
+    25%      { transform: translate(25px, -50px); }
+    50%      { transform: translate(-30px, -95px); }
+    75%      { transform: translate(15px, -60px); }
+}
+
+@keyframes float-6 {
+    0%, 100% { transform: translate(0, 0); }
+    30%      { transform: translate(-20px, -85px); }
+    55%      { transform: translate(35px, -45px); }
+    80%      { transform: translate(-25px, -105px); }
+}
+
+/* Dust twinkle — appears and disappears */
+@keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    15%      { opacity: 0.9; }
+    50%      { opacity: 0.3; }
+    75%      { opacity: 0.8; }
+    90%      { opacity: 0.1; }
 }
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-    .ray {
+    .ray, .ray-bloom, .dust {
         animation: none !important;
     }
+    .ray-1 { opacity: 0.7; transform: rotate(8deg); }
+    .ray-2 { opacity: 0.5; transform: rotate(-5deg); }
+    .ray-3 { opacity: 0.4; transform: rotate(14deg); }
+    .ray-4 { opacity: 0.3; transform: rotate(3deg); }
+    .ray-5 { opacity: 0.55; transform: rotate(-8deg); }
+    .ray-6 { opacity: 0.2; transform: rotate(-12deg); }
+    .ray-7 { opacity: 0.4; transform: rotate(5deg); }
+    .dust { opacity: 0.5; }
 }
 
 .hero-container {
