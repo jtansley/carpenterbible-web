@@ -283,11 +283,12 @@ img {
 }
 
 /* ===========================================
-   Realistic Atmospheric Cloud System
-   4 parallax layers: far, mid, near, wisps
+   Heavenly Light Rays
+   Realistic crepuscular rays streaming down
+   from the sky with gentle shimmer animation
    =========================================== */
 
-.sky-layer {
+.light-rays {
     position: absolute;
     inset: 0;
     overflow: hidden;
@@ -295,329 +296,146 @@ img {
     z-index: 0;
 }
 
-.cloud-layer {
+.ray {
     position: absolute;
-    inset: 0;
+    top: -20%;
+    height: 140%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 240, 0.45) 0%,
+        rgba(255, 255, 230, 0.25) 20%,
+        rgba(255, 248, 220, 0.12) 50%,
+        rgba(255, 245, 210, 0.04) 75%,
+        transparent 100%
+    );
+    filter: blur(8px);
+    transform-origin: top center;
+    will-change: opacity;
 }
 
-.cloud {
-    position: absolute;
-    border-radius: 50%;
-    will-change: transform;
-}
+/* --- Individual rays: varying widths, positions, angles, opacities --- */
 
-/* --- FAR LAYER: huge, very blurred, slow — atmosphere depth --- */
-.cloud-layer-far .cloud {
-    filter: blur(50px);
-    opacity: 0.6;
-}
-
-.cloud-far-1 {
-    width: 900px;
-    height: 280px;
-    top: -5%;
-    left: -900px;
-    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 40%, transparent 70%);
-    border-radius: 60% 40% 50% 45% / 50% 60% 40% 50%;
-    animation: drift-far-1 90s linear infinite;
-}
-
-.cloud-far-2 {
-    width: 1100px;
-    height: 350px;
-    top: 30%;
-    left: -1100px;
-    background: radial-gradient(ellipse at 60% 40%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.25) 45%, transparent 70%);
-    border-radius: 45% 55% 60% 40% / 55% 45% 50% 50%;
-    animation: drift-far-2 110s linear infinite;
-    animation-delay: -40s;
-}
-
-.cloud-far-3 {
-    width: 800px;
-    height: 250px;
-    top: 60%;
-    left: -800px;
-    background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 40%, transparent 65%);
-    border-radius: 50% 50% 45% 55% / 45% 55% 50% 50%;
-    animation: drift-far-3 100s linear infinite;
-    animation-delay: -70s;
-}
-
-/* --- MID LAYER: medium blur, medium speed — the main clouds --- */
-.cloud-layer-mid .cloud {
-    filter: blur(30px);
+/* Primary ray — wide, bright, center-left */
+.ray-1 {
+    left: 15%;
+    width: 180px;
+    transform: rotate(8deg);
     opacity: 0.7;
+    animation: ray-shimmer-1 8s ease-in-out infinite;
 }
 
-.cloud-mid-1 {
-    width: 600px;
-    height: 200px;
-    top: 5%;
-    left: -600px;
-    background:
-        radial-gradient(ellipse at 25% 60%, rgba(255,255,255,0.9) 0%, transparent 55%),
-        radial-gradient(ellipse at 55% 40%, rgba(255,255,255,0.85) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 55%, rgba(255,255,255,0.7) 0%, transparent 50%);
-    border-radius: 55% 45% 50% 50% / 50% 55% 45% 50%;
-    animation: drift-mid-1 60s linear infinite;
-    animation-delay: -10s;
+/* Secondary ray — narrower, right side */
+.ray-2 {
+    left: 55%;
+    width: 120px;
+    transform: rotate(-5deg);
+    opacity: 0.5;
+    animation: ray-shimmer-2 10s ease-in-out infinite;
+    animation-delay: -3s;
 }
 
-.cloud-mid-2 {
-    width: 700px;
-    height: 220px;
-    top: 35%;
-    left: -700px;
-    background:
-        radial-gradient(ellipse at 30% 55%, rgba(255,255,255,0.85) 0%, transparent 50%),
-        radial-gradient(ellipse at 65% 45%, rgba(255,255,255,0.9) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 60%, rgba(255,255,255,0.6) 0%, transparent 45%);
-    border-radius: 50% 55% 45% 50% / 55% 45% 55% 45%;
-    animation: drift-mid-2 75s linear infinite;
-    animation-delay: -35s;
+/* Accent ray — thin, far left */
+.ray-3 {
+    left: 3%;
+    width: 70px;
+    transform: rotate(14deg);
+    opacity: 0.35;
+    animation: ray-shimmer-3 12s ease-in-out infinite;
+    animation-delay: -7s;
 }
 
-.cloud-mid-3 {
-    width: 500px;
-    height: 170px;
-    top: 55%;
-    left: -500px;
-    background:
-        radial-gradient(ellipse at 35% 50%, rgba(255,255,255,0.85) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.7) 0%, transparent 50%);
-    border-radius: 45% 55% 55% 45% / 50% 50% 50% 50%;
-    animation: drift-mid-3 55s linear infinite;
-    animation-delay: -20s;
-}
-
-.cloud-mid-4 {
-    width: 550px;
-    height: 180px;
-    top: 75%;
-    left: -550px;
-    background:
-        radial-gradient(ellipse at 40% 45%, rgba(255,255,255,0.8) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 55%, rgba(255,255,255,0.75) 0%, transparent 50%);
-    border-radius: 50% 50% 40% 60% / 55% 45% 55% 45%;
-    animation: drift-mid-4 65s linear infinite;
-    animation-delay: -50s;
-}
-
-/* --- NEAR LAYER: lighter blur, faster — passing close by --- */
-.cloud-layer-near .cloud {
+/* Wide diffuse ray — center */
+.ray-4 {
+    left: 32%;
+    width: 220px;
+    transform: rotate(3deg);
+    opacity: 0.3;
     filter: blur(18px);
-    opacity: 0.55;
+    animation: ray-shimmer-4 14s ease-in-out infinite;
+    animation-delay: -2s;
 }
 
-.cloud-near-1 {
-    width: 450px;
-    height: 150px;
-    top: 0%;
-    left: -450px;
-    background:
-        radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.95) 0%, transparent 45%),
-        radial-gradient(ellipse at 65% 50%, rgba(255,255,255,0.8) 0%, transparent 45%);
-    border-radius: 50% 50% 45% 55% / 50% 55% 45% 50%;
-    animation: drift-near-1 40s linear infinite;
+/* Narrow bright ray — right-center */
+.ray-5 {
+    left: 72%;
+    width: 90px;
+    transform: rotate(-10deg);
+    opacity: 0.55;
+    animation: ray-shimmer-5 9s ease-in-out infinite;
     animation-delay: -5s;
 }
 
-.cloud-near-2 {
-    width: 380px;
-    height: 130px;
-    top: 40%;
-    left: -380px;
-    background:
-        radial-gradient(ellipse at 40% 50%, rgba(255,255,255,0.9) 0%, transparent 45%),
-        radial-gradient(ellipse at 75% 50%, rgba(255,255,255,0.7) 0%, transparent 40%);
-    border-radius: 45% 55% 50% 50% / 55% 45% 50% 50%;
-    animation: drift-near-2 35s linear infinite;
-    animation-delay: -18s;
+/* Very wide atmospheric glow — far right */
+.ray-6 {
+    left: 82%;
+    width: 250px;
+    transform: rotate(-15deg);
+    opacity: 0.2;
+    filter: blur(25px);
+    animation: ray-shimmer-6 16s ease-in-out infinite;
+    animation-delay: -9s;
 }
 
-.cloud-near-3 {
-    width: 520px;
-    height: 160px;
-    top: 70%;
-    left: -520px;
-    background:
-        radial-gradient(ellipse at 25% 55%, rgba(255,255,255,0.9) 0%, transparent 45%),
-        radial-gradient(ellipse at 55% 45%, rgba(255,255,255,0.85) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.65) 0%, transparent 40%);
-    border-radius: 55% 45% 50% 50% / 45% 55% 50% 50%;
-    animation: drift-near-3 45s linear infinite;
-    animation-delay: -28s;
-}
-
-/* --- WISPS: thin streaky clouds for realism --- */
-.cloud-layer-wisps .cloud {
-    filter: blur(12px);
+/* Subtle thin ray — between primary rays */
+.ray-7 {
+    left: 44%;
+    width: 55px;
+    transform: rotate(6deg);
     opacity: 0.4;
+    filter: blur(5px);
+    animation: ray-shimmer-7 11s ease-in-out infinite;
+    animation-delay: -4s;
 }
 
-.cloud-wisp-1 {
-    width: 700px;
-    height: 30px;
-    top: 15%;
-    left: -700px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.7) 80%, transparent 100%);
-    border-radius: 50%;
-    animation: drift-wisp-1 50s linear infinite;
-    animation-delay: -12s;
+/* --- Shimmer Keyframes: gentle opacity pulsing at different rates --- */
+
+@keyframes ray-shimmer-1 {
+    0%, 100% { opacity: 0.7; }
+    40%      { opacity: 0.45; }
+    70%      { opacity: 0.75; }
 }
 
-.cloud-wisp-2 {
-    width: 500px;
-    height: 20px;
-    top: 28%;
-    left: -500px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 25%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.6) 75%, transparent 100%);
-    border-radius: 50%;
-    animation: drift-wisp-2 42s linear infinite;
-    animation-delay: -30s;
+@keyframes ray-shimmer-2 {
+    0%, 100% { opacity: 0.5; }
+    35%      { opacity: 0.65; }
+    65%      { opacity: 0.35; }
 }
 
-.cloud-wisp-3 {
-    width: 600px;
-    height: 25px;
-    top: 50%;
-    left: -600px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 15%, rgba(255,255,255,0.8) 45%, rgba(255,255,255,0.5) 75%, transparent 100%);
-    border-radius: 50%;
-    transform: rotate(-2deg);
-    animation: drift-wisp-3 55s linear infinite;
-    animation-delay: -8s;
+@keyframes ray-shimmer-3 {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 0.2; }
+    80%      { opacity: 0.45; }
 }
 
-.cloud-wisp-4 {
-    width: 400px;
-    height: 18px;
-    top: 82%;
-    left: -400px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 20%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.6) 80%, transparent 100%);
-    border-radius: 50%;
-    transform: rotate(1deg);
-    animation: drift-wisp-4 38s linear infinite;
-    animation-delay: -22s;
+@keyframes ray-shimmer-4 {
+    0%, 100% { opacity: 0.3; }
+    30%      { opacity: 0.15; }
+    60%      { opacity: 0.38; }
 }
 
-/* --- Drift Keyframes: Far layer (slowest) --- */
-@keyframes drift-far-1 {
-    0%   { transform: translateX(0) translateY(0); }
-    25%  { transform: translateX(calc(25vw + 225px)) translateY(8px); }
-    50%  { transform: translateX(calc(50vw + 450px)) translateY(-5px); }
-    75%  { transform: translateX(calc(75vw + 675px)) translateY(10px); }
-    100% { transform: translateX(calc(100vw + 900px)) translateY(0); }
+@keyframes ray-shimmer-5 {
+    0%, 100% { opacity: 0.55; }
+    45%      { opacity: 0.35; }
+    75%      { opacity: 0.6; }
 }
 
-@keyframes drift-far-2 {
-    0%   { transform: translateX(0) translateY(0); }
-    33%  { transform: translateX(calc(33vw + 367px)) translateY(-12px); }
-    66%  { transform: translateX(calc(66vw + 733px)) translateY(8px); }
-    100% { transform: translateX(calc(100vw + 1100px)) translateY(0); }
+@keyframes ray-shimmer-6 {
+    0%, 100% { opacity: 0.2; }
+    50%      { opacity: 0.12; }
+    85%      { opacity: 0.28; }
 }
 
-@keyframes drift-far-3 {
-    0%   { transform: translateX(0) translateY(0); }
-    50%  { transform: translateX(calc(50vw + 400px)) translateY(15px); }
-    100% { transform: translateX(calc(100vw + 800px)) translateY(0); }
-}
-
-/* --- Drift Keyframes: Mid layer --- */
-@keyframes drift-mid-1 {
-    0%   { transform: translateX(0) translateY(0) scale(1); }
-    25%  { transform: translateX(calc(25vw + 150px)) translateY(-10px) scale(1.02); }
-    50%  { transform: translateX(calc(50vw + 300px)) translateY(5px) scale(0.98); }
-    75%  { transform: translateX(calc(75vw + 450px)) translateY(-8px) scale(1.01); }
-    100% { transform: translateX(calc(100vw + 600px)) translateY(0) scale(1); }
-}
-
-@keyframes drift-mid-2 {
-    0%   { transform: translateX(0) translateY(0); }
-    30%  { transform: translateX(calc(30vw + 210px)) translateY(12px); }
-    60%  { transform: translateX(calc(60vw + 420px)) translateY(-6px); }
-    100% { transform: translateX(calc(100vw + 700px)) translateY(0); }
-}
-
-@keyframes drift-mid-3 {
-    0%   { transform: translateX(0) translateY(0) scale(1); }
-    50%  { transform: translateX(calc(50vw + 250px)) translateY(-15px) scale(1.03); }
-    100% { transform: translateX(calc(100vw + 500px)) translateY(0) scale(1); }
-}
-
-@keyframes drift-mid-4 {
-    0%   { transform: translateX(0) translateY(0); }
-    40%  { transform: translateX(calc(40vw + 220px)) translateY(8px); }
-    70%  { transform: translateX(calc(70vw + 385px)) translateY(-10px); }
-    100% { transform: translateX(calc(100vw + 550px)) translateY(0); }
-}
-
-/* --- Drift Keyframes: Near layer (fastest) --- */
-@keyframes drift-near-1 {
-    0%   { transform: translateX(0) translateY(0) scale(1); }
-    30%  { transform: translateX(calc(30vw + 135px)) translateY(-12px) scale(1.04); }
-    60%  { transform: translateX(calc(60vw + 270px)) translateY(6px) scale(0.97); }
-    100% { transform: translateX(calc(100vw + 450px)) translateY(0) scale(1); }
-}
-
-@keyframes drift-near-2 {
-    0%   { transform: translateX(0) translateY(0); }
-    50%  { transform: translateX(calc(50vw + 190px)) translateY(10px); }
-    100% { transform: translateX(calc(100vw + 380px)) translateY(0); }
-}
-
-@keyframes drift-near-3 {
-    0%   { transform: translateX(0) translateY(0) scale(1); }
-    40%  { transform: translateX(calc(40vw + 208px)) translateY(-8px) scale(1.02); }
-    80%  { transform: translateX(calc(80vw + 416px)) translateY(12px) scale(0.98); }
-    100% { transform: translateX(calc(100vw + 520px)) translateY(0) scale(1); }
-}
-
-/* --- Drift Keyframes: Wisps --- */
-@keyframes drift-wisp-1 {
-    0%   { transform: translateX(0) scaleX(1); }
-    50%  { transform: translateX(calc(50vw + 350px)) scaleX(1.1); }
-    100% { transform: translateX(calc(100vw + 700px)) scaleX(1); }
-}
-
-@keyframes drift-wisp-2 {
-    0%   { transform: translateX(0) scaleX(1) rotate(-1deg); }
-    50%  { transform: translateX(calc(50vw + 250px)) scaleX(1.15) rotate(0deg); }
-    100% { transform: translateX(calc(100vw + 500px)) scaleX(1) rotate(-1deg); }
-}
-
-@keyframes drift-wisp-3 {
-    0%   { transform: translateX(0) rotate(-2deg) scaleX(1); }
-    50%  { transform: translateX(calc(50vw + 300px)) rotate(-1deg) scaleX(1.08); }
-    100% { transform: translateX(calc(100vw + 600px)) rotate(-2deg) scaleX(1); }
-}
-
-@keyframes drift-wisp-4 {
-    0%   { transform: translateX(0) rotate(1deg); }
-    50%  { transform: translateX(calc(50vw + 200px)) rotate(0deg); }
-    100% { transform: translateX(calc(100vw + 400px)) rotate(1deg); }
+@keyframes ray-shimmer-7 {
+    0%, 100% { opacity: 0.4; }
+    40%      { opacity: 0.25; }
+    70%      { opacity: 0.5; }
 }
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-    .cloud {
+    .ray {
         animation: none !important;
     }
-    .cloud-far-1  { left: -5%; }
-    .cloud-far-2  { left: 20%; }
-    .cloud-far-3  { left: 50%; }
-    .cloud-mid-1  { left: 5%; }
-    .cloud-mid-2  { left: 30%; }
-    .cloud-mid-3  { left: 55%; }
-    .cloud-mid-4  { left: 10%; }
-    .cloud-near-1 { left: 15%; }
-    .cloud-near-2 { left: 45%; }
-    .cloud-near-3 { left: 25%; }
-    .cloud-wisp-1 { left: 5%; }
-    .cloud-wisp-2 { left: 30%; }
-    .cloud-wisp-3 { left: 10%; }
-    .cloud-wisp-4 { left: 50%; }
 }
 
 .hero-container {
