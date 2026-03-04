@@ -788,26 +788,16 @@ img {
     margin-bottom: 48px;
 }
 
-.hero-actions .btn-primary {
+.hero-store-badge {
     background: white;
     color: var(--brown-800);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.hero-actions .btn-primary:hover {
+.hero-store-badge:hover {
     background: var(--cream);
+    color: var(--brown-800);
     box-shadow: 0 6px 28px rgba(0, 0, 0, 0.2);
-}
-
-.hero-actions .btn-secondary {
-    color: white;
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.hero-actions .btn-secondary:hover {
-    border-color: white;
-    background: rgba(255, 255, 255, 0.15);
 }
 
 .hero-stats {
